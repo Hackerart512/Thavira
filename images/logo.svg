@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 50" width="180" height="50">
+  <g transform="translate(5, 5)">
+    <!-- Shield / Leaf Medical Icon -->
+    <rect x="0" y="5" width="30" height="30" rx="8" fill="#eaf8f1" />
+    <path d="M15 10 C18 10 22 13 22 17 C22 22 15 26 15 26 C15 26 8 22 8 17 C8 13 12 10 15 10 Z" fill="#0c8f5b" />
+    <!-- Leaf veins or sparkles -->
+    <path d="M15 13 L15 22 M15 16 L18 14 M15 19 L12 18" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
+    
+    <!-- Logo Text -->
+    <text x="42" y="26" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="800" fill="#163026" letter-spacing="-0.5">Thavira</text>
+    <text x="116" y="26" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="800" fill="#0c8f5b">.</text>
+    <text x="42" y="37" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="600" fill="#667085" letter-spacing="1">GUT HEALTH</text>
+  </g>
+</svg>
