@@ -2663,6 +2663,11 @@ MOBILE STICKY CTA
    
     padding: 40px 0 30px; 
 }
+
+.hero-content{
+  position: static; 
+}
+
 }
 
 
