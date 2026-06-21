@@ -696,6 +696,29 @@ img {
     border-color: rgba(217, 119, 6, 0.2);
 }
 
+.symptom-image-container {
+    width: 100%;
+    height: 140px;
+    background-color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 16px;
+    border-radius: var(--radius-sm);
+}
+
+.symptom-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: var(--transition-smooth);
+}
+
+.symptom-card:hover .symptom-image {
+    transform: scale(1.05);
+}
+
 .symptom-icon {
     width: 32px;
     height: 32px;
@@ -746,7 +769,9 @@ img {
 
 /* SECTION 04 — The Recurring Relief Loop */
 .loop-section {
-    background-color: var(--color-forest-dark);
+    background: linear-gradient(135deg, #f0f7f3 0%, #e8f5ee 50%, #f5f9f6 100%);
+    border-top: 1px solid #c8e6d4;
+    border-bottom: 1px solid #c8e6d4;
 }
 
 .loop-container {
@@ -757,73 +782,169 @@ img {
 }
 
 .loop-box {
-    background-color: white;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: var(--radius-md);
-    padding: 24px;
+    background-color: #ffffff;
+    border: 1px solid rgba(17, 66, 39, 0.12);
+    border-radius: var(--radius-lg);
+    padding: 28px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 20px;
+    box-shadow: 0 4px 24px rgba(17, 66, 39, 0.06);
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition-smooth);
 }
+
+.loop-box:hover {
+    box-shadow: 0 8px 32px rgba(17, 66, 39, 0.12);
+    transform: translateY(-3px);
+}
+
+.loop-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+}
+
+.loop-box:nth-child(1)::before { background-color: #38bdf8; } /* Acidity blue */
+.loop-box:nth-child(2)::before { background-color: #c084fc; } /* H Pylori purple */
+.loop-box:nth-child(3)::before { background-color: #4ade80; } /* IBS green */
+.loop-box:nth-child(4)::before { background-color: #fbbf24; } /* Constipation amber */
 
 .loop-box-badge {
     align-self: flex-start;
     font-family: var(--font-heading);
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 800;
     padding: 4px 12px;
     border-radius: var(--radius-full);
+    letter-spacing: 0.05em;
 }
 
 .badge-acid {
-    background-color: #e0f2fe;
-    color: #0369a1;
+    background-color: rgba(56, 189, 248, 0.15);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.3);
 }
 
 .badge-hpylori {
-    background-color: #f3e8ff;
-    color: #6b21a8;
+    background-color: rgba(192, 132, 252, 0.15);
+    color: #c084fc;
+    border: 1px solid rgba(192, 132, 252, 0.3);
 }
 
 .badge-ibs {
-    background-color: #dcfce7;
-    color: #15803d;
+    background-color: rgba(74, 222, 128, 0.15);
+    color: #4ade80;
+    border: 1px solid rgba(74, 222, 128, 0.3);
 }
 
 .badge-const {
-    background-color: #fffbeb;
-    color: #b45309;
+    background-color: rgba(251, 191, 36, 0.15);
+    color: #fbbf24;
+    border: 1px solid rgba(251, 191, 36, 0.3);
 }
 
-.loop-steps {
+.loop-steps-visual {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 8px;
+    gap: 12px;
 }
 
-.step-text {
-    font-size: 14px;
-    font-weight: 600;
-    color: black;
-    background-color:rgb(63 191 119 / 18%);
-    padding: 8px 12px;
-    border-radius: var(--radius-sm);
-    flex-grow: 1;
-    text-align: center;
-        border-radius: 100px;
+@media (max-width: 991px) {
+    .loop-steps-visual {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+    }
 }
 
-.step-text.warning {
+.loop-step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    background-color: #f8faf9;
+    border: 1px solid rgba(17, 66, 39, 0.08);
+    padding: 12px 16px;
+    border-radius: var(--radius-md);
+    transition: var(--transition-smooth);
+}
+
+.loop-step:hover {
+    background-color: #f0f7f3;
+    transform: translateY(-2px);
+}
+
+.step-icon-badge {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.step-suppress .step-icon-badge {
+    background-color: rgba(56, 189, 248, 0.15);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.step-relief .step-icon-badge {
+    background-color: rgba(74, 222, 128, 0.15);
+    color: #4ade80;
+    border: 1px solid rgba(74, 222, 128, 0.3);
+}
+
+.step-relapse .step-icon-badge {
     background-color: rgba(239, 68, 68, 0.15);
-    color: #fca5a5;
-    border: 1px solid rgba(239, 68, 68, 0.25);
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.3);
 }
 
-.loop-arrow {
-    color: #0b2b19;
-    font-size: 14px;
+.step-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.step-lbl {
+    font-family: var(--font-heading);
+    font-size: 9px;
+    font-weight: 800;
+    color: var(--color-slate);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.step-val {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-charcoal);
+}
+
+.loop-arrow-divider {
+    color: rgba(17, 66, 39, 0.3);
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+@media (max-width: 991px) {
+    .loop-arrow-divider {
+        transform: rotate(90deg);
+        margin: 0 auto;
+        height: 12px;
+    }
 }
 
 .reframe-box {
@@ -872,59 +993,94 @@ img {
 }
 
 /* SECTION 05 — The Thavira Root-Cause Clarity Method */
-.timeline-container {
-    position: relative;
-    max-width: 900px;
-    margin: 40px auto;
-    padding-left: 20px;
+.step-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin: 48px auto;
+    max-width: 1200px;
 }
 
-.timeline-line {
-    position: absolute;
-    top: 0;
-    left: 24px;
-    width: 2px;
-    height: 100%;
-    background-color: var(--color-border);
-    z-index: 1;
+@media (max-width: 991px) {
+    .step-card-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        max-width: 600px;
+    }
 }
 
-.timeline-node {
-    position: relative;
-    padding-left: 50px;
-    margin-bottom: 40px;
-    z-index: 2;
+.step-card {
+    background-color: var(--color-white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition-smooth);
 }
 
-.timeline-node:last-child {
-    margin-bottom: 0;
+.step-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-premium);
+    border-color: rgba(31, 142, 92, 0.2);
 }
 
-.node-number {
-    position: absolute;
-    left: 10px;
-    top: 2px;
-    width: 30px;
-    height: 30px;
-    background-color: var(--color-mint);
-    color: var(--color-white);
-    border-radius: 50%;
+.step-card-image-container {
+    width: 100%;
+    height: 200px;
+    background-color: var(--color-sage-light);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: var(--font-heading);
-    font-weight: 700;
-    font-size: 14px;
+    overflow: hidden;
+    border-bottom: 1px solid var(--color-border);
+    position: relative;
 }
 
-.node-content h3 {
+.step-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-smooth);
+}
+
+.step-card:hover .step-card-image {
+    transform: scale(1.04);
+}
+
+.step-card-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.step-card-number {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 11px;
+    color: var(--color-mint);
+    background-color: rgba(31, 142, 92, 0.08);
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    align-self: flex-start;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.step-card-body h3 {
     font-size: 18px;
     margin-bottom: 8px;
+    color: var(--color-forest-dark);
 }
 
-.node-content p {
-    font-size: 15px;
+.step-card-body p {
+    font-size: 14px;
     color: var(--color-slate);
+    line-height: 1.6;
 }
 
 /* Comparison Table */
@@ -1079,12 +1235,17 @@ img {
 
 /* SECTION 06 — Doctor-Led Team / Authority */
 .authority-section {
-    background-color: var(--color-forest-dark);
-    color: var(--color-white);
+    background: linear-gradient(135deg, #f5f9f6 0%, #edf5f0 50%, #f0f7f3 100%);
+    border-top: 1px solid #c8e6d4;
+    border-bottom: 1px solid #c8e6d4;
 }
 
 .authority-section .section-title {
-    color: var(--color-white);
+    color: var(--color-forest-dark);
+}
+
+.authority-section .section-label {
+    color: var(--color-mint);
 }
 
 .authority-split {
@@ -1098,32 +1259,32 @@ img {
 .authority-intro .lead-text {
     font-size: 18px;
     font-weight: 600;
-    color: var(--color-sage-light);
+    color: var(--color-forest-dark);
     margin-bottom: 16px;
 }
 
 .authority-intro .body-text {
     font-size: 15px;
-    color: var(--color-slate-light);
+    color: var(--color-slate);
     margin-bottom: 24px;
 }
 
 .philosophy-block {
-    background-color: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background-color: rgba(17, 66, 39, 0.04);
+    border: 1px solid rgba(17, 66, 39, 0.1);
     border-radius: var(--radius-md);
     padding: 20px;
 }
 
 .philosophy-block h4 {
-    color: var(--color-mint-light);
+    color: var(--color-mint);
     font-size: 16px;
     margin-bottom: 8px;
 }
 
 .philosophy-block p {
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--color-slate);
     line-height: 1.5;
 }
 
@@ -1134,13 +1295,20 @@ img {
 }
 
 .doctor-card {
-    background-color: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     padding: 20px;
     display: flex;
     gap: 20px;
     align-items: flex-start;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-smooth);
+}
+
+.doctor-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: rgba(31, 142, 92, 0.2);
 }
 
 .doc-image-wrapper {
@@ -1149,7 +1317,8 @@ img {
     height: 100px;
     border-radius: 50%;
     overflow: hidden;
-    border: 3px solid rgba(255, 255, 255, 0.1);
+    border: 3px solid rgba(31, 142, 92, 0.2);
+    box-shadow: 0 4px 12px rgba(17, 66, 39, 0.1);
 }
 
 .doc-image-wrapper img {
@@ -1165,20 +1334,20 @@ img {
 }
 
 .doc-info h4 {
-    color: var(--color-white);
+    color: var(--color-forest-dark);
     font-size: 18px;
 }
 
 .doc-title {
     font-size: 13px;
     font-weight: 700;
-    color: var(--color-mint-light);
+    color: var(--color-mint);
 }
 
 .doc-exp,
 .doc-cert {
     font-size: 12px;
-    color: var(--color-slate-light);
+    color: var(--color-slate);
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -1186,7 +1355,7 @@ img {
 
 .doc-desc {
     font-size: 13px;
-    color: rgba(255, 255, 255, 0.75);
+    color: var(--color-slate);
     margin-top: 8px;
     line-height: 1.5;
 }
@@ -1199,12 +1368,13 @@ img {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     padding: 16px 24px;
     flex-wrap: wrap;
     gap: 12px;
+    box-shadow: var(--shadow-sm);
 }
 
 .process-step {
@@ -1230,11 +1400,11 @@ img {
 .step-lbl {
     font-size: 13px;
     font-weight: 600;
-    color: var(--color-sage-light);
+    color: var(--color-charcoal);
 }
 
 .process-separator {
-    color: rgba(255, 255, 255, 0.15);
+    color: var(--color-slate-light);
 }
 
 /* SECTION 07 — What You'll Understand In The Call */
@@ -1691,37 +1861,78 @@ img {
     background-color: var(--color-white);
     border-radius: var(--radius-md);
     border: 1px solid var(--color-border);
-    padding: 20px;
+    padding: 24px;
     display: flex;
     flex-direction: column;
     box-shadow: var(--shadow-sm);
+    transition: var(--transition-smooth);
+}
+
+.proof-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(31, 142, 92, 0.2);
+}
+
+.proof-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    width: 100%;
+}
+
+.proof-profile-wrapper {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--color-border);
+    flex-shrink: 0;
+}
+
+.proof-profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.proof-meta {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.proof-meta strong {
+    font-size: 14px;
+    color: var(--color-charcoal);
+    line-height: 1.2;
+}
+
+.proof-location {
+    font-size: 11px;
+    color: var(--color-slate-light);
 }
 
 .proof-badge {
-    align-self: flex-start;
     font-family: var(--font-heading);
-    font-size: 11px;
-    font-weight: 700;
+    font-size: 10px;
+    font-weight: 800;
     color: var(--color-forest);
     background-color: rgba(17, 66, 39, 0.06);
-    padding: 2px 8px;
+    padding: 4px 10px;
     border-radius: var(--radius-full);
-    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin-left: auto;
 }
 
 .proof-text {
-    font-size: 13px;
-    line-height: 1.5;
+    font-size: 13.5px;
+    line-height: 1.6;
     color: var(--color-slate);
     font-style: italic;
-    flex-grow: 1;
-    margin-bottom: 12px;
-}
-
-.proof-author {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--color-charcoal);
+    margin: 0;
 }
 
 /* WhatsApp Carousel Snap Scroll Setup */
@@ -1805,36 +2016,22 @@ img {
     border-radius: var(--radius-full);
 }
 
-.wa-body {
+.wa-body-img-wrapper {
     padding: 16px;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23dfdfdf' fill-opacity='0.3'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10zm10 8c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm40 40c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z'/%3E%3C/g%3E%3C/svg%3E");
+    background-color: #e5ddd5;
     display: flex;
-    flex-direction: column;
-    gap: 12px;
+    justify-content: center;
+    align-items: center;
     min-height: 180px;
 }
 
-.wa-msg {
-    max-width: 85%;
-    padding: 8px 12px;
+.wa-chat-img {
+    max-width: 100%;
+    height: auto;
     border-radius: var(--radius-sm);
-    font-size: 12px;
-    line-height: 1.4;
-    position: relative;
-}
-
-.wa-msg.received {
-    align-self: flex-start;
-    background-color: var(--color-white);
-    color: var(--color-charcoal);
-    border-top-left-radius: 0;
-}
-
-.wa-msg.sent {
-    align-self: flex-end;
-    background-color: #dcf8c6;
-    color: var(--color-charcoal);
-    border-top-right-radius: 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    object-fit: contain;
 }
 
 .carousel-controls {
@@ -2026,7 +2223,12 @@ img {
 
 /* SECTION 12 — FAQ / Objection Handling */
 .faq-section {
-    background-color: var(--color-forest-dark);
+    background: linear-gradient(135deg, #f5f9f6 0%, #edf5f0 50%, #f0f7f3 100%);
+    border-top: 1px solid #c8e6d4;
+}
+
+.faq-section .section-title {
+    color: var(--color-forest-dark) !important;
 }
 
 .faq-container {
@@ -2038,11 +2240,12 @@ img {
 }
 
 .faq-item {
-    background-color: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     overflow: hidden;
     transition: var(--transition-smooth);
+    box-shadow: var(--shadow-sm);
 }
 
 .faq-question {
@@ -2054,13 +2257,25 @@ img {
     font-family: var(--font-heading);
     font-weight: 700;
     font-size: 15px;
-    color: var(--color-white);
+    color: var(--color-forest-dark);
     user-select: none;
+}
+
+.faq-question:hover {
+    background-color: #f8faf9;
 }
 
 .faq-toggle {
     font-size: 14px;
-    color: var(--color-mint-light);
+    color: var(--color-mint);
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: rgba(31, 142, 92, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .faq-answer {
@@ -2069,14 +2284,19 @@ img {
 }
 
 .faq-answer p {
-    color: rgba(255, 255, 255, 0.75);
+    color: var(--color-slate);
     font-size: 14px;
     line-height: 1.6;
 }
 
 .faq-item.active {
-    background-color: rgba(255, 255, 255, 0.04);
-    border-color: rgba(31, 142, 92, 0.3);
+    background-color: #f8faf9;
+    border-color: rgba(31, 142, 92, 0.25);
+    box-shadow: 0 2px 12px rgba(17, 66, 39, 0.06);
+}
+
+.faq-item.active .faq-question {
+    color: var(--color-mint);
 }
 
 .faq-item.active .faq-answer {
@@ -2739,9 +2959,20 @@ img {
         padding: 24px;
     }
 
-    /* Proof mobile */
+    /* Proof mobile slider */
     .condition-proof-grid {
-        grid-template-columns: 1fr;
+        display: flex !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important;
+        gap: 14px !important;
+        padding: 10px 16px 24px 16px !important;
+        scrollbar-width: none !important;
+        margin-bottom: 20px !important;
+        grid-template-columns: none !important;
+    }
+
+    .condition-proof-grid::-webkit-scrollbar {
+        display: none !important;
     }
 
     .proof-number-bar {
@@ -2786,27 +3017,72 @@ img {
 
     .nav-container,
     .logo-flex,
-    .hero-badge, .symptom-card {
+    .hero-badge {
         justify-content: center;
         align-items: center;
     }
-    .symptom-desc, .section-label, .section-title, .proof-card
-    {
+
+    .symptom-grid {
+        display: flex !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important;
+        gap: 14px !important;
+        padding: 10px 16px 24px 16px !important;
+        scrollbar-width: none !important;
+        margin-bottom: 24px !important;
+        grid-template-columns: none !important;
+    }
+
+    .symptom-grid::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    .symptom-card {
+        flex: 0 0 72% !important;
+        scroll-snap-align: start !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        justify-content: flex-start !important;
+        min-width: 0 !important;
+    }
+
+    .symptom-desc, .section-label, .section-title {
         text-align: center;
     }
-    .call-card-footer span{
+
+    .proof-card {
+        flex: 0 0 75% !important;
+        scroll-snap-align: start !important;
+        text-align: left !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+        min-width: 0 !important;
+    }
+
+    .proof-card-header {
+        align-items: center !important;
+        justify-content: flex-start !important;
+    }
+
+    .call-card-footer span {
         flex-direction: column;
     }
 
-    .proof-badge{
+    .proof-badge {
         text-align: center;
-        width: 100%;
+        width: auto !important;
+        margin-left: auto !important;
     }
 
-    .medical-disclaimer, .authority-intro .body-text, .philosophy-block h4, .philosophy-block p, .tab-content h4, .tab-content p{
+    .medical-disclaimer, .authority-intro .body-text, .philosophy-block h4, .philosophy-block p, .tab-content h4, .tab-content p {
         text-align: center;
     }
-    .loop-box-badge{
-            align-self: anchor-center;
+
+    .loop-box-badge {
+        align-self: center !important;
     }
 }
