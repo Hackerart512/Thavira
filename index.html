@@ -962,19 +962,23 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
 
-            // 1. Smooth scroll to anchors
+            // 1. Smooth scroll to anchors (only intercept internal #hash links)
             const scrollButtons = document.querySelectorAll('.smooth-scroll');
             scrollButtons.forEach(button => {
                 button.addEventListener('click', function (e) {
-                    e.preventDefault();
                     const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
+                    // Only intercept internal anchor links (starting with #)
+                    if (targetId && targetId.startsWith('#')) {
+                        e.preventDefault();
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
                     }
+                    // External URLs (like Razorpay) will navigate normally
                 });
             });
 
