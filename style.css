@@ -453,6 +453,9 @@ img {
   object-fit: cover;
 }
 
+.team-section .team-carousel-container {
+    height: 565px;
+}
 
 .logo-area{
   width: 204px;
@@ -3387,8 +3390,7 @@ img {
 }
 
 .team-section .team-carousel-container {
-  position: relative;
-  height: 450px;
+  position: relative; 
   max-width: 1000px;
   margin: auto;
 }
@@ -3533,8 +3535,9 @@ img {
     border-radius: 100px;
   }
 
-  .main-footer {
-  }
+   .team-section .team-carousel-container { 
+  height: 450px; 
+}
 }
 
 /* ==========================================================================
