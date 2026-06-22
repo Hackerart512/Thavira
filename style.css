@@ -3271,7 +3271,7 @@ img {
 
 .sticky-mobile-cta {
   position: fixed;
-  bottom: 75px;
+  bottom: 80px;
   left: 0px;
   right: 0px;
   z-index: 9999;
