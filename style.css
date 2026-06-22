@@ -457,15 +457,14 @@ img {
     height: 565px;
 }
 
-.logo-area{
-  width: 204px;
+.logo-flex{
+  width: 100px;
 }
 .logo-area {
-    display: flex;
-    flex-direction: row;
-  
+        display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .journey-section .step-pill {
@@ -3272,7 +3271,7 @@ img {
 
 .sticky-mobile-cta {
   position: fixed;
-  bottom: 110px;
+  bottom: 85px;
   left: 0px;
   right: 0px;
   z-index: 9999;
@@ -3508,17 +3507,21 @@ img {
   }
 
   .logo-area {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    justify-content: center;
-    align-items: center;
+            display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+  }
+
+  .logo-flex{
+    width: 70px;
   }
 }
 
 @media (max-width: 768px) {
   .consultation-bar {
-    padding: 12px 27px;
+    padding: 6px 6px 6px 23px
   }
 
   .consultation-title {
