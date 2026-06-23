@@ -305,6 +305,10 @@ img {
   animation: animatedgradient 3s ease infinite alternate;
 }
 
+.animatedgradient {
+  animation: animatedgradient 3s ease infinite alternate;
+}
+
 .btn-secondary:hover {
   background-color: var(--color-forest-light);
   transform: translateY(-2px);
@@ -699,7 +703,7 @@ img {
   padding: 3px 10px 3px 8px;
   margin-top: 4px;
   letter-spacing: 0.02em;
-  text-transform: uppercase; 
+  text-transform: uppercase;
   transition: var(--transition-smooth);
 }
 
@@ -792,7 +796,7 @@ img {
 
 @keyframes animatedgradient {
   0% {
-    background-position: 0% 50%;
+    background-position: 0 50%;
   }
 
   50% {
@@ -800,7 +804,28 @@ img {
   }
 
   100% {
-    background-position: 0% 50%;
+    background-position: 0 50%;
+  }
+
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
   }
 }
 
@@ -995,8 +1020,8 @@ img {
 }
 
 .reframe-box {
-  background-color: var(--color-amber-bg);
-  border: 1px solid var(--color-amber-border);
+  background-color: #ecfdf3;
+  border: 1px solid #31784b;
   border-radius: var(--radius-md);
   padding: 24px;
   display: flex;
@@ -1042,10 +1067,11 @@ img {
 }
 
 .reframe-content p {
-  color: #b45309;
+  color: #236e3f;
   font-size: 14px;
   font-weight: 500;
   line-height: 1.5;
+  text-align: center;
 }
 
 .loop-footer {
@@ -1831,7 +1857,7 @@ img {
 @media (max-width: 991px) {
   .hero-container {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 0px;
   }
 
   .hero-visual {
@@ -1916,7 +1942,7 @@ img {
 
   .main-footer {
     display: block;
-    margin-bottom: 108px;
+    margin-bottom: 83px;
   }
 
   .link-sep {
@@ -2036,55 +2062,170 @@ img {
   margin: 20px auto 0;
 }
 
-/* Scroll Container */
+/* ==========================================================================
+   SECTION — Testimonials (Reel-Style Portrait Videos)
+   ========================================================================== */
+
+.section-testimonials {
+  padding: clamp(28px, 8vw, 80px) 0;
+  background: #f9fafb;
+}
+
+.section-testimonials .heading {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* ── Slider Container ── */
 .testimonial-slider {
   display: flex;
-  gap: 24px;
+  gap: 20px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding-bottom: 10px;
+  -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  padding: 8px 4px 20px;
+  /* center the cards when there's extra space */
+  justify-content: flex-start;
 }
 
 .testimonial-slider::-webkit-scrollbar {
   display: none;
 }
 
-/* Card */
+/* ── Individual Reel Card ── */
 .video-card {
-  flex: 0 0 280px;
-  scroll-snap-align: center;
-  background: #fff;
-  border-radius: 24px;
+  /* Portrait reel: 260px wide → height auto via aspect-ratio */
+  flex: 0 0 260px;
+  min-width: 0;
+  scroll-snap-align: start;
+  border-radius: 20px;
   overflow: hidden;
-  border: 1px solid #eee;
-  box-shadow: 0 15px 40px -15px rgba(0, 0, 0, 0.15);
+  background: #000;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+  position: relative;
 }
 
-.video-card video {
+.video-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.25);
+}
+
+/* ── Vimeo Wrapper — Portrait 9:16 ── */
+.vimeo-wrapper {
+  width: 100%;
+  position: relative;
+  /* 9:16 = 177.78% padding trick – most reliable across browsers */
+  padding-bottom: 177.78%;
+  height: 0;
+  overflow: hidden;
+  background: #000;
+}
+
+.vimeo-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* ── Responsive Breakpoints ── */
+
+/* Mobile (≤ 480px): show 1.5 cards — 1 full + half peeking */
+@media (max-width: 480px) {
+  .testimonial-slider {
+    gap: 12px;
+    padding: 8px 4px 20px;
+  }
+
+  .video-card {
+    /* 67% of container = 1 card; remaining ~33% - gap ≈ half of next card */
+    flex: 0 0 67%;
+  }
+}
+
+/* Small tablet (481px–767px): show 1.5 cards too */
+@media (min-width: 481px) and (max-width: 767px) {
+  .testimonial-slider {
+    gap: 14px;
+  }
+
+  .video-card {
+    flex: 0 0 62%;
+  }
+}
+
+/* Tablet (768px–1023px): show 3 cards, horizontally scrollable */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .video-card {
+    flex: 0 0 220px;
+  }
+}
+
+/* Desktop (≥ 1024px): 3 cards centred, no horizontal scroll needed */
+@media (min-width: 1024px) {
+  .testimonial-slider {
+    overflow-x: visible;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 28px;
+    scroll-snap-type: none;
+  }
+
+  .video-card {
+    flex: 0 0 300px;
+  }
+}
+
+/* Heading styles (shared) */
+.section-testimonials .heading h2 {
+  font-size: clamp(22px, 4vw, 36px);
+  font-weight: 800;
+  color: #16324f;
+  line-height: 1.3;
+}
+
+.section-testimonials .heading span {
+  color: #2e7d32;
+}
+
+.section-testimonials .divider {
+  width: 60px;
+  height: 6px;
+  background: #2e7d32;
+  border-radius: 20px;
+  margin: 16px auto 0;
+}
+
+/* Mobile heading */
+@media (max-width: 767px) {
+  .section-testimonials .heading h2 {
+    font-size: 22px;
+  }
+
+  .call-card-footer small {
+    width: 90%;
+    text-align: center;
+  }
+
+  .team-section .team-card img {
+    transform: scale(1.1);
+  }
+}
+
+/* ==========================================================================
+   TESTIMONIAL VIDEO — legacy rule (unused, kept for safety)
+   ========================================================================== */
+
+.video-card .testimonial-video {
   width: 100%;
   aspect-ratio: 9 / 16;
   object-fit: cover;
   display: block;
   background: #000;
-}
-
-/* Desktop Grid */
-@media (min-width: 768px) {
-  .testimonial-slider {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    overflow: visible;
-  }
-
-  .video-card {
-    width: 100%;
-  }
-}
-
-@media (max-width: 767px) {
-  .heading h2 {
-    font-size: 28px;
-  }
 }
