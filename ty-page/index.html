@@ -16,6 +16,36 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- Meta Pixel Code START -->
+    <script>
+        !(function (f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function () {
+                n.callMethod
+                    ? n.callMethod.apply(n, arguments)
+                    : n.queue.push(arguments);
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = "2.0";
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s);
+        })(
+            window,
+            document,
+            "script",
+            "https://connect.facebook.net/en_US/fbevents.js",
+        );
+        fbq("init", "1048385454359623");
+        fbq("track", "PageView");
+    </script>
+    <!-- Meta Pixel Code END -->
+
     <style>
         :root {
             --primary: #0F8F62;
@@ -374,12 +404,14 @@ MOBILE
         @media(max-width:768px) {
 
 
-            .container { 
-    padding: 0px 15px;
-}
-.next-card h3 {
-    font-size: 18px;
-}
+            .container {
+                padding: 0px 15px;
+            }
+
+            .next-card h3 {
+                font-size: 18px;
+            }
+
             .top-bar {
                 font-size: 13px;
             }
@@ -425,9 +457,10 @@ MOBILE
                 margin-bottom: 30px;
             }
 
-            .booking-section{
+            .booking-section {
                 margin-bottom: 10px;
             }
+
             .benefits-grid,
             .timeline-grid,
             .next-grid {
@@ -448,30 +481,35 @@ MOBILE
                 display: flex;
                 align-items: center;
                 justify-content: flex-start;
-                       width: 100%;
+                width: 100%;
                 padding: 15px;
-                        font-size: 14px;
+                font-size: 14px;
             }
- 
+
             .timeline {
-    padding-bottom: 30px;
-}
-            .timeline-number { 
+                padding-bottom: 30px;
+            }
+
+            .timeline-number {
                 margin: 0px;
                 width: 40px;
                 height: 40px;
-                        margin-right: 10px;
+                margin-right: 10px;
             }
 
-            .timeline-grid{
+            .timeline-grid {
                 justify-items: center;
-                    gap: 18px;
+                gap: 18px;
             }
         }
     </style>
 </head>
 
 <body>
+
+    <noscript><img height="1" width="1" style="display: none"
+            src="https://www.facebook.com/tr?id=1048385454359623&ev=PageView&noscript=1" /></noscript>
+
 
     <div class="top-bar">
         ✓ Final Action Required To Secure Your Slot
@@ -522,7 +560,7 @@ MOBILE
 
         <div class="booking-card">
 
-             
+
             <iframe src="https://pay.thavirahealth.com/widget/booking/nJAJSScI1wuOmeVbRloq" scrolling="yes">
             </iframe>
 
@@ -532,7 +570,7 @@ MOBILE
 
     </section>
 
-  
+
     <section class="next-section container">
 
         <div class="next-wrapper">
@@ -546,7 +584,7 @@ MOBILE
                 <div class="next-card">
                     <h3>📩 Instant Email Confirmation</h3>
                     <p>
-                    You will receive a Google Meet link and slot details instantly.
+                        You will receive a Google Meet link and slot details instantly.
                     </p>
                 </div>
 
@@ -570,7 +608,7 @@ MOBILE
 
     </section>
 
-    
+
 </body>
 
 </html>
